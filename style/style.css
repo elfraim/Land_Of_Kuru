@@ -1,0 +1,377 @@
+body {
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
+    margin: 0px;
+    padding: 0px;
+    background-color: rgba(255, 255, 255, 0.288)
+}
+
+#backimg {
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+
+label {
+    font-weight: bold;
+}
+
+#gametitle {
+    text-align: center;
+    color: white;
+    font-family: hack;
+    text-shadow: 0 0 5px #120000;
+    margin-top: 0px;
+    padding-top: 80px;
+}
+
+#leftmenu {
+    width: 20%;
+    height: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.356);
+    background-color: rgba(227, 227, 227, 0.059);
+    color: white;
+    display: inline-block;
+    text-align: left;
+    padding-left: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 55px;
+    /*+box-shadow: inset 2px 2px 5px 3px rgba(0, 0, 0, 0.059);*/
+    -moz-box-shadow: inset 2px 2px 5px 3px rgba(0, 0, 0, 0.059);
+    -webkit-box-shadow: inset 2px 2px 5px 3px rgba(0, 0, 0, 0.059);
+    box-shadow: inset 2px 2px 5px 3px rgba(0, 0, 0, 0.059);
+}
+
+#leftmenu #playerinfo h3 {
+    font-weight: bold;
+    font-style: italic;
+    color: #F8DFAF;
+}
+
+#navigationtext {
+    margin-bottom: 0;
+    text-align: left;
+}
+
+#leftmenu #playerinfo p {
+    text-align: center;
+    margin: 0 1px;
+    font-size: 14px;
+    display: inline-block;
+    font-weight: normal;
+}
+
+#leftmenu #playerinfo #stats {
+    display: block;
+    text-align: left;
+}
+
+#leftmenu #playerinfo #stats #hp {
+    margin-top: 15px;
+    text-align: left;
+    color: rgb(37, 223, 37);
+    margin-left: 1px;
+    font-size: 11px;
+}
+
+#leftmenu #playerinfo #stats #exp {
+    font-size: 11px;
+    text-align: left;
+    color: #98B0FD;
+    margin-left: 1px;
+}
+
+#leftmenu #playerinfo #stats #gold {
+    font-size: 11px;
+    text-align: left;
+    color: #FFFB0A;
+    margin-left: 1px;
+}
+
+#leftmenu #playerinfo #stats #mainhand {
+    font-size: 11px;
+    text-align: left;
+    color: white;
+    margin-left: 1px;
+}
+
+#leftmenu #playerinfo #stats #bank {
+    font-size: 11px;
+    text-align: left;
+    color: orange;
+    margin-left: 1px;
+}
+
+#leftmenu #playerinfo #stats #level {
+    font-size: 13px;
+    text-align: left;
+    color: rgb(98, 232, 255);
+    margin-left: 1px;
+    margin-top: 10px;
+}
+
+#leftmenu #playerinfo #stats #currentquest {
+    font-size: 11px;
+    padding-top: 10px;
+    text-align: left;
+    color: rgb(214, 54, 214);
+    margin-left: 1px;
+    font-weight: bold;
+}
+
+#menulist {
+    font-size: 12px;
+    text-align: left;
+    color: white;
+    margin-left: 1px;
+    cursor: pointer;
+    line-height: 1.5;
+}
+
+#menulist span:hover {
+    color: cyan;
+    cursor: pointer;
+}
+
+#maininfobox{
+    position: relative;
+    width: 340px;
+    height: 100%;
+    top: 0%;
+    left: 50%;
+    margin-top: -340px;
+    margin-left: -170px;
+    color: white;
+    display: block;
+    border: 1px white solid;
+    text-align: center;
+    font-size: 13px;
+    padding: 10px 10px;
+}
+
+#createplayerbox {
+    position: fixed;
+    width: 340px;
+    height: 280px;
+    top: 50%;
+    left: 50%;
+    margin-top: -140px;
+    margin-left: -170px;
+    background-color: rgba(255, 255, 255, 0.100);
+    border: 1px rgba(255, 255, 255, 0.856);
+    border-radius: 25px;
+    box-shadow: 5px 5px 28px 1px rgba(54, 54, 54, 0.425);
+}
+
+#createplayerbox #createplayer {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 50px;
+}
+
+#createplayerbox #createplayer input {
+    margin-bottom: 2px;
+}
+
+#mainvendorbox:hover {
+    cursor: pointer;
+}
+
+#mainvendorbox {
+    position: relative;
+    width: 340px;
+    height: 100%;
+    top: 0%;
+    left: 50%;
+    margin-top: -340px;
+    margin-left: -170px;
+    color: white;
+    display: block;
+    border: 1px white solid;
+    text-align: center;
+    font-size: 13px;
+}
+
+#mainvendorbox p {
+    margin: 0px;
+}
+
+#mainvendorbox p:hover {
+    cursor: pointer;
+    font-weight: bold;
+    color: whitesmoke;
+}
+
+#mainfightbox {
+    position: relative;
+    width: 340px;
+    height: 100%;
+    top: 0px;
+    left: 50%;
+    margin-top: -355px;
+    margin-left: -170px;
+    color: white;
+    display: block;
+    border: 1px solid rgba(0, 0, 0, 0.204);
+    text-align: center;
+    font-size: 13px;
+    background-color: rgba(255, 255, 255, 0.039);
+    /*+box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.158);*/
+    -moz-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.158);
+    -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.158);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.158);
+}
+
+#mainfightbox #playerdamage {
+    color: rgb(29, 194, 29);
+    text-shadow: 1px 1px 2px #000000;
+}
+
+#mainfightbox #enemydamage {
+    color: red;
+}
+
+#mainmonsterbox {
+    position: relative;
+    width: 340px;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    margin-top: -340px;
+    margin-left: -170px;
+    color: white;
+    display: block;
+    border: 1px white solid;
+    text-align: center;
+    font-size: 13px;
+}
+
+#mainmedicbox {
+    position: relative;
+    width: 340px;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    margin-top: -340px;
+    margin-left: -170px;
+    color: white;
+    display: block;
+    border: 1px white solid;
+    text-align: center;
+    font-size: 13px;
+    padding: 5px;
+    background-color: rgba(0, 117, 0, 0.092);
+}
+
+#mainfightbox h5 {
+    display: inline-block;
+    margin: 5px 30px;
+    padding: 0px 35px;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 2;
+    border: thin solid rgba(255, 255, 255, 0.092);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.382);
+}
+
+#mainmedicbox #heal {
+    color: greenyellow;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: rgba(131, 247, 183, 0.37);
+}
+
+#mainfightbox h3 {
+    color: red;
+    background-color: rgba(225, 0, 0, 0.158);
+}
+
+#mainfightbox h3#levelupid {
+    background-color: #45AED1;
+    color: rgba(44, 44, 255, 0.829);
+}
+
+#mainmedicbox #heal:hover {
+    cursor: pointer;
+    background-color: green;
+}
+
+#mainbankbox {
+    position: relative;
+    width: 340px;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    margin-top: -340px;
+    margin-left: -170px;
+    color: white;
+    display: block;
+    border: 1px white solid;
+    text-align: center;
+    font-size: 13px;
+}
+
+#mainbankbox p {
+    padding: 0px 25px;
+}
+
+#deposit {
+    margin: 0px 10px;
+}
+
+#withdraw {
+    margin: 0px 10px;
+}
+
+#deposit:hover {
+    color: cyan;
+    cursor: pointer;
+}
+
+#withdraw:hover {
+    color: cyan;
+    cursor: pointer;
+}
+
+.mobs:hover {
+    cursor: pointer;
+    color: whitesmoke;
+    font-weight: bold;
+}
+
+#mainquestbox {
+    position: relative;
+    width: 340px;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    margin-top: -340px;
+    margin-left: -170px;
+    color: white;
+    display: block;
+    border: 1px white solid;
+    text-align: center;
+    font-size: 13px;
+    padding: 5px;
+}
+
+#mainquestbox span:hover {
+    cursor: pointer;
+    color: whitesmoke;
+    font-weight: bold;
+}
+
+#mainquestbox p:hover {
+    cursor: pointer;
+    color: whitesmoke;
+    font-weight: bold;
+}
+
+#mainquestbox p h4:hover {
+    color: white;
+    cursor: crosshair;
+}
