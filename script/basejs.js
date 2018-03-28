@@ -217,15 +217,17 @@ const owl = new Monster("Owl (Lv 5)", 35, 8, 10, 30, randomNum(105));
 const buck = new Monster("Wild Buck (Lv 6)", 40, 10, 14, 37, randomNum(125));
 const bear = new Monster("Bear (Lv 8)", 45, 12, 16, 42, randomNum(145));
 const viper = new Monster("Viper (Lv 9)", 50, 14, 18, 50, randomNum(165));
+const urgot = new Monster("Urgot (Lv 10 BOSS)", 85, 10, 30, 100, randomNum(200));
 const wildForestList = [owl, buck, bear, viper];
-
 const spawnedMobs = []
 
 // Quests
 const killThreeRats = new questNPC("End the rats", "Rats are everywhere! Please eliminate 3 Rats. (200 Gold Reward)", 200, 5, rat.name);
 const killFiveBlackScorpions = new questNPC("Stings so bad", "We've lost some good men and women to these awful Black Scorpions, Please help us and eliminate 8 of them! (450 Gold Reward)", 450, 8, blackScorpion.name);
 const killSpiders = new questNPC("Web of trouble", "My wife is scared of spiders and they're everywhere now, Please kill 5 of them she can't sleep at night!", 300, 5, spider.name)
-questList = [killThreeRats, killSpiders, killFiveBlackScorpions];
+const killOwls = new questNPC("Terror at night", "I can't get any sleep! These owls are killing me! kill 6 owls and i'll reward you 500 gold", 500, 5, owl.name)
+const firstBoss = new questNPC("Him", "I saw him I sweare I did! He's huge.. I .. I .. can't say anymore", 1000, 1, urgot.name)
+questList = [killThreeRats, killSpiders, killFiveBlackScorpions, killOwls, firstBoss];
 
 
 function randomNum(num){
@@ -236,24 +238,24 @@ function randomNum(num){
 
 function randomMonster() {
     randomMob = Math.floor(Math.random() * 100);
-    if(player.level <= 4){
-        if(randomMob >= 75){
-            for(let i = 0; i < monsterList.length; i++){
+    if (player.level <= 4){
+        if (randomMob >= 75){
+            for (let i = 0; i < monsterList.length; i++){
                 const monster = monsterList[Math.floor(Math.random()*monsterList.length)];
                 spawnedMobs.push(monster);
             };
-        } else if(randomMob < 75 && randomMob > 45){
-            for(let i = 1; i < monsterList.length; i++){
+        } else if (randomMob < 75 && randomMob > 45){
+            for (let i = 1; i < monsterList.length; i++){
                 const monster = monsterList[Math.floor(Math.random()*monsterList.length)];
                 spawnedMobs.push(monster);
             };
         } else {
-            for(let i = 2; i < monsterList.length; i++){
+            for (let i = 2; i < monsterList.length; i++){
                 const monster = monsterList[Math.floor(Math.random()*monsterList.length)];
                 spawnedMobs.push(monster);
             };
         };
-    } else if(player.level > 4 && player.level <= 10){ // wild forest
+    } else if (player.level > 4 && player.level <= 10){ // wild forest
         
         if(randomMob >= 75){
             for(let i = 0; i < wildForestList.length; i++){
@@ -266,22 +268,27 @@ function randomMonster() {
                 spawnedMobs.push(monster);
             };
         } else {
-            for(let i = 2; i < wildForestList.length; i++){
+            for (let i = 2; i < wildForestList.length; i++){
                 const monster = wildForestList[Math.floor(Math.random()*monsterList.length)];
                 spawnedMobs.push(monster);
             };
         };
+    } if (player.level > 4 && questList.includes(firstBoss)) {
+        if (randomMob <= 7){ // low chance of spawning Urgot
+                const monster = urgot
+                spawnedMobs.push(monster);
+            };
     }
 };
 
 function calculateDamage(minDamage, maxDamage){
-    if(player.pClass === "warrior"){
+    if (player.pClass === "warrior"){
         calculatedMinDamage = (minDamage + player.stats.str + player.stats.agi) / 2.5;
         calculatedMaxDamage = (maxDamage + player.stats.str + player.stats.agi) / 2.5;
-    } else if(player.pClass === "ranger"){
+    } else if (player.pClass === "ranger"){
         calculatedMinDamage = (minDamage + player.stats.agi + player.stats.str) / 2.5;
         calculatedMaxDamage = (maxDamage + player.stats.agi + player.stats.str) / 2.3;
-    } else if(player.pClass === "druid"){
+    } else if (player.pClass === "druid"){
         calculatedMinDamage = (minDamage + player.stats.int + player.stats.agi) / 2.5;
         calculatedMaxDamage = (maxDamage + player.stats.int + player.stats.agi) / 2.4;
     }
@@ -316,7 +323,7 @@ function levelUp(){
     player.health = player.maxHealth;
     player.level += 1;
     player.xp = 0;
-    player.xpUp *= Math.round(1.5);
+    player.xpUp *= Math.round(1.8);
 };
 
 
