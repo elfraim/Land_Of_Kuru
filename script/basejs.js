@@ -1,3 +1,4 @@
+
 class BaseHero {
     constructor(name, health, race){
         this.name = name;

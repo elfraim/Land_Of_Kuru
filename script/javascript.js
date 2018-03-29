@@ -97,28 +97,22 @@ function findAndFight(){
 
 function medic(){
     clearAllBoxes();
-    document.getElementById("mainmedicbox").innerHTML += "<h2> Medic Tent </h2>"
+    $("#mainmedicbox").html("<h2> Medic Tent </h2>");
     document.getElementById("mainmedicbox").style.display = "block";
-    medicTextBox = document.getElementById("mainmedicbox");
-    medicText = document.createElement("p");
-        healOrNot = document.createElement("span");
-        healOrNot.innerHTML = ("Heal me!")
+        var healOrNot = document.createElement("span");
+        healOrNot.innerHTML = "Heal"
         healOrNot.id = "heal";
-        medicTextBox = document.getElementById("mainmedicbox");
-        medicText = document.createElement("p");
-        medicText.innerHTML += ("Quick! He's hurt! We can save you, But it'll cost you 50 Gold coins.")
-        medicTextBox.appendChild(medicText);
-        medicTextBox.appendChild(healOrNot);
+        $("#mainmedicbox").append("Quick! He's hurt! We can save you, But it'll cost you 50 Gold coins.")
+        $("#mainmedicbox").append(healOrNot);
         document.getElementById("heal").style.display = "block";
         document.getElementById("heal").addEventListener("click", function(){  
             if(player.gold >= 50){
                 player.health = player.maxHealth;
                 player.gold -= 50;
-                clearBox("mainmedicbox");
-                alert("We managed to save you! Thanks for the gold.")
+                $("#mainmedicbox").html("<h3> We managed to save you! </h3><p> Be careful next time! </p>")
                 createLeftMenu();
             } else {
-                alert("You need 50 Gold to heal up.")
+                alert("You need 50 Gold to heal yourself")
             }
         });
 };
@@ -126,7 +120,7 @@ function medic(){
 
 function bank(){
     clearAllBoxes();
-    document.getElementById("mainbankbox").innerHTML += "<h2><font color='yellow'>Bank</font></h2>"
+    $("#mainbankbox").html("<h2><font color='yellow'>Bank</font></h2>");
     document.getElementById("mainbankbox").style.display = "block";
     bankTextBox = document.getElementById("mainbankbox");
     bankText = document.createElement("p");
