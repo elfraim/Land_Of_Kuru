@@ -1,99 +1,95 @@
 <!DOCTYPE html>
+
 <head>
-    
-    <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $("#createplayerbtn").addClass("animated bounceInUp");
-            $('#weaponstore').click(function(){
-                $(this).addClass("animated jackInTheBox");
-                if (player.health <= 0){
-                    $("#hp").css("color", "red");
-                }
-            });
-        });
-    </script>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $("#createplayerbtn").addClass("animated bounceInUp");
+      $('#weaponstore').click(function() {
+        $(this).addClass("animated jackInTheBox");
+      });
+    });
+  </script>
 
 
-    <title>Land of Kuru</title>
-    <link href="./style/animate.css" rel="stylesheet"  />
-    <link href="./style/style.css" rel="stylesheet"/>
-    <meta charset="utf-8"/>
+  <title>Land of Kuru</title>
+  <link href="./style/animate.css" rel="stylesheet" />
+  <link href="./style/style.css" rel="stylesheet" />
+  <meta charset="utf-8" />
 </head>
-<body>
-    <img src="./pics/background.jpg" id="backimg" />
-    <h2 id="gametitle" onclick="homePage()">Land of Kuru</h2>
-    <div id="leftmenu">
-        <div id="playerinfo">
-            <h3 id="statstext">Stats</h3>
-            <p id="playername">name</p>
-            <p id="playerclass">class</p>
-            <p id="playerrace">race</p> <br>
-            <div id="stats">
-                <p id="level">Level:</p><br>
-                <p id="hp">HP:</p><br>
-                <p id="exp">Exp:</p><br>
-                <p id="gold">Gold:</p><br>
-                <p id="bank">Bank:</p><br>
-                <p id="mainhand">MainHand</p><br>
-                <p id="currentquest">Current Quest:</p>
-                <h3 id="navigationtext">Navigation</h3><br>
-                <div id="menulist">
-                    <span onclick="startWeaponStore()" id="weaponstore">Weapon store</span><br>
-                    <span onclick="findAndFight();clearBox('mainfightbox');" id="monsterselection">Monsters</span><br>
-                    <span onclick="medic()" id="medicvendor">Medic Tent</span><br>
-                    <span onclick="bank()" id="bankvendor">Bank</span><br>
-                    <span onclick="quests()" id="questvendor">Quests</span>
-                </div>
-            </div>
 
+<body>
+  <img src="./pics/background.jpg" id="backimg" />
+  <h2 id="gametitle" onclick="homePage()">Land of Kuru</h2>
+  <div id="leftmenu">
+    <div id="playerinfo">
+      <h3 id="statstext">Stats</h3>
+      <p id="playername">name</p>
+      <p id="playerclass">class</p>
+      <p id="playerrace">race</p> <br>
+      <div id="stats">
+        <p id="level">Level:</p><br>
+        <p id="hp">HP:</p><br>
+        <p id="exp">Exp:</p><br>
+        <p id="gold">Gold:</p><br>
+        <p id="bank">Bank:</p><br>
+        <p id="mainhand">MainHand</p><br>
+        <p id="currentquest">Current Quest:</p>
+        <h3 id="navigationtext">Navigation</h3><br>
+        <div id="menulist">
+          <span onclick="startWeaponStore()" id="weaponstore">Weapon store</span><br>
+          <span onclick="findAndFight();clearBox('mainfightbox');" id="monsterselection">Monsters</span><br>
+          <span onclick="medic()" id="medicvendor">Medic Tent</span><br>
+          <span onclick="bank()" id="bankvendor">Bank</span><br>
+          <span onclick="quests()" id="questvendor">Quests</span>
         </div>
+      </div>
+
     </div>
-    <div id="createplayerbox">
-        <form id="createplayer" method="POST">
-            <label for="choosename">Your Name:</p>
+  </div>
+  <div id="createplayerbox">
+    <form id="createplayer" method="POST">
+      <label for="choosename">Your Name:</p>
             <input type="text" id="choosename" name="playername"><br>
             <label for="chooseclass">Choose a class:</label><br>
-            <input type="text" id="chooseclass" name="playerclass" placeholder="Warrior, Druid, Ranger"><br>
-            <label for="race">Choose a race:</label> <br>
-            <input type="text" id="race" name="race" placeholder="Human, Dwarf, Elf, Gnome"><br>
-            <button type="button" onclick="createPlayer()" id="createplayerbtn">Create</button>
-        </div>
-    </div>
-    <div id="maininfobox">
-        <p>Welcome to Land of Kuru<br />You are able to fight monsters, Buy new weapons, Gain stats,
-             Do quests, Heal yourself at the medic, Gain gold from monsters, 
-             Lose gold if you die, Use the bank to safeguard your gold.
-             You can play 3 classes, Druid, Warrior, Ranger, Each has its own unique
-             stats. 4 Different races each with they're own unique stats.
-             Your goal is to reach level 20 without running out of gold and 
-             being unable to heal, Monsters get stronger the stronger you get.</p>
-    </div>
-    <div id="mainvendorbox">
-        <h2 id="weaponvendortitle">Weapon Vendor</h2>
-    </div>
-    <div id="mainmonsterbox">
-    </div>
+      <input type="text" id="chooseclass" name="playerclass" placeholder="Warrior, Druid, Ranger"><br>
+      <label for="race">Choose a race:</label> <br>
+      <input type="text" id="race" name="race" placeholder="Human, Dwarf, Elf, Gnome"><br>
+      <button type="button" onclick="createPlayer(); homePage();" id="createplayerbtn">Create</button>
+  </div>
+  </div>
+  <div id="maininfobox">
+    <p>Welcome to Land of Kuru<br />You are able to fight monsters, buy new weapons, gain stats, complete quests, heal yourself at the medic, gain gold from monsters, risk losing gold if you die and use the bank to safeguard your gold. You can play 3 classes,
+      Druid, Warrior, Ranger, each has its own unique stats. 4 Different races each with they're own unique stats. Your goal is to reach level 20 without running out of gold and being unable to heal; Monsters get stronger the stronger you get.</p>
+  </div>
+  <div id="mainvendorbox">
+    <h2 id="weaponvendortitle">Weapon Vendor</h2>
+  </div>
+  <div id="mainmonsterbox">
+  </div>
+  <div id="fightpage" class="mx-auto" style="width: 240px; height: 150px;">
+    <button type="button" id='attackbtn' class="btn btn-warning">Attack</button>
+    <button type="button" id='skillsbtn' class="btn btn-primary">Skills</button>
+    <button type="button" id='runbtn' class="btn btn-danger">Run</button>
+
     <div id="mainfightbox">
-            <table border="0" cellpadding="0" cellspacing="0"> 
-                <td align="center">You</td>
-                <td align="center">Enemy</td>
-            </table>
+      <table border="0" cellpadding="0" cellspacing="0" id="fighttable">
+        <td align="center">You</td>
+        <td align="center">Enemy</td>
+      </table>
     </div>
-    <div id="mainmedicbox"></div>
-    <div id="mainbankbox"></div>
-    <div id="mainquestbox"></div>
+  </div>
+
+  <div id="mainmedicbox"></div>
+  <div id="mainbankbox"></div>
+  <div id="mainquestbox"></div>
+
+
+
+  <script src="./script/basejs.js">
+  </script>
+  <script src="./script/javascript.js"></script>
 </body>
-
-
-
-
-
-
-<script src="./script/basejs.js"> </script>
-<script src="./script/javascript.js"></script>
-
-
-
-

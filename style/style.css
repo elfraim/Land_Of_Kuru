@@ -279,6 +279,7 @@ label {
 }
 
 #mainmedicbox #heal {
+    padding: 5px 20px;
     color: greenyellow;
     font-size: 15px;
     font-weight: bold;
@@ -374,4 +375,16 @@ label {
 #mainquestbox p h4:hover {
     color: white;
     cursor: crosshair;
+}
+
+#fightpage {
+    position: static;
+    padding: 10px 10px;
+    z-index: -1;
+}
+#attackbtn {
+    position: static;
+}
+#mainfightbox #playerhealth {
+    color:green;
 }

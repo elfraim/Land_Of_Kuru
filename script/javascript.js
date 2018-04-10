@@ -3,11 +3,14 @@ function capFirstLetter(string) {
 };
 
 function clearBox(elementID) {
-    document.getElementById(elementID).innerHTML = "";
-    document.getElementById(elementID).style.display = "none";
+    $('#'+elementID).html("");
+    $('#'+elementID).hide();
 };
 
 //hides html blocks
+$("#fightpage").hide();
+$("#mainfightbox").hide();
+$("#maininfobox").hide();
 document.getElementById("createplayer").style.display = "none";
 document.getElementById("mainvendorbox").style.display = "none";
 document.getElementById("mainmonsterbox").style.display = "none";
@@ -24,7 +27,7 @@ if (typeof player === 'undefined') {
 
 const homePage = () => {
     clearAllBoxes();
-    document.getElementById("maininfobox").style.display = "block";
+    $("#maininfobox").show();
 }
 
 function createPlayer() {
@@ -53,7 +56,7 @@ function createLeftMenu() {
     document.getElementById("playerrace").innerHTML = capFirstLetter(playerRace);
     //Stats
     document.getElementById("hp").innerHTML = "Health: " + player.health + "/" + player.maxHealth;
-    document.getElementById("exp").innerHTML = "Exp: " + player.xp + "/" + player.xpUp; 
+    document.getElementById("exp").innerHTML = "Exp: " + player.xp + "/" + player.xpUp;
     document.getElementById("gold").innerHTML = "Gold: " + player.gold;
     document.getElementById("bank").innerHTML = "Bank: " + player.bank;
     document.getElementById("mainhand").innerHTML = "Main Hand: " + player.mainHand.name;
@@ -70,7 +73,7 @@ function startWeaponStore(){
     clearAllBoxes();
     document.getElementById("mainvendorbox").innerHTML = "<h2> Weapon Vendor </h2>"
     document.getElementById("mainvendorbox").style.display = "block";
-    for(let i = 0; i < weaponVendor.inStore.length; i++) { 
+    for(let i = 0; i < weaponVendor.inStore.length; i++) {
         weapon = weaponVendor.inStore[i];
         insertParagraph = document.createElement('p')
         insertParagraph.id = 'wep' + i;
@@ -91,22 +94,22 @@ function startWeaponStore(){
     };
 };
 
+//Starts the fighting function.
 function findAndFight(){
-    fight();
+    newFight();
 };
 
+
+// Medic
 function medic(){
     clearAllBoxes();
     $("#mainmedicbox").html("<h2> Medic Tent </h2>");
     document.getElementById("mainmedicbox").style.display = "block";
-        var healOrNot = document.createElement("span");
-        healOrNot.innerHTML = "Heal"
-        healOrNot.id = "heal";
-        $("#mainmedicbox").append("Quick! He's hurt! We can save you, But it'll cost you 50 Gold coins.")
-        $("#mainmedicbox").append(healOrNot);
-        document.getElementById("heal").style.display = "block";
-        document.getElementById("heal").addEventListener("click", function(){  
+        $("#mainmedicbox").append("Quick! He's hurt! We can save you, But it'll cost you 50 Gold coins. <br />");
+        $("#mainmedicbox").append("<br/> <span id='heal'>Heal</span> <br />");
+        document.getElementById("heal").addEventListener("click", function(){
             if(player.gold >= 50){
+                $("#hp").css("color", "rgb(37, 223, 37)");
                 player.health = player.maxHealth;
                 player.gold -= 50;
                 $("#mainmedicbox").html("<h3> We managed to save you! </h3><p> Be careful next time! </p>")
@@ -117,23 +120,15 @@ function medic(){
         });
 };
 
-
+//Bank
 function bank(){
     clearAllBoxes();
     $("#mainbankbox").html("<h2><font color='yellow'>Bank</font></h2>");
     document.getElementById("mainbankbox").style.display = "block";
     bankTextBox = document.getElementById("mainbankbox");
-    bankText = document.createElement("p");
-    bankText.innerHTML += "Hello! Welcome to the bank, Deposit your gold so you dont lose it!";
-    deposit = document.createElement("span");
-    deposit.id = "deposit";
-    deposit.innerHTML += "Deposit"
-    withdraw = document.createElement("span");
-    withdraw.id = "withdraw";
-    withdraw.innerHTML = "Withdraw"
-    bankTextBox.appendChild(bankText);
-    bankTextBox.appendChild(deposit);
-    bankTextBox.appendChild(withdraw);
+    $("#mainbankbox").append("Hello! Welcome to the bank, Deposit your gold so you dont lose it! <br />");
+    $("#mainbankbox").append("<span id='deposit'>Deposit</span>");
+    $("#mainbankbox").append("<span id='withdraw'>Withdraw</span>");
     document.getElementById("deposit").addEventListener("click", function(){
         amount = Math.round(prompt("How much would you like to deposit?"));
         if(amount <= player.gold){
