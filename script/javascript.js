@@ -7,6 +7,18 @@ function clearBox(elementID) {
     $('#'+elementID).hide();
 };
 
+function hideButtons() {
+  $("#attackbtn").hide();
+  $("#skillsbtn").hide();
+  $("#runbtn").hide();
+}
+
+function showButtons(){
+  $("#attackbtn").show();
+  $("#skillsbtn").show();
+  $("#runbtn").show();
+}
+
 //hides html blocks
 $("#fightpage").hide();
 $("#mainfightbox").hide();

@@ -334,128 +334,7 @@ function levelUp() {
 
 //Fight function
 
-function fight() {
-  createLeftMenu();
-  clearAllBoxes();
-  spawnedMobs.length = 0;
-  document.getElementById("mainmonsterbox").innerHTML = "<h2> Monsters around you </h2>"
-  document.getElementById("mainmonsterbox").style.display = "block";
-  randomMonster();
-  for (let i = 0; i < spawnedMobs.length; i++) {
-    insertParagraph = document.createElement('p');
-    insertParagraph.id = 'mob' + i + " " + "mobs";
-    insertParagraph.setAttribute("class", "mobs");
-    var textMonster = spawnedMobs[i];
-    insertParagraph.innerHTML += textMonster.name + "<br>";
-    monsterBlock = document.getElementById("mainmonsterbox");
-    monsterBlock.appendChild(insertParagraph);
-    fightBox = document.getElementById("mainfightbox");
-  };
-}
 
-function hideButtons() {
-  $("#attackbtn").hide();
-  $("#skillsbtn").hide();
-  $("#runbtn").hide();
-}
-
-function showButtons(){
-  $("#attackbtn").show();
-  $("#skillsbtn").show();
-  $("#runbtn").show();
-}
-function testFight() {
-  document.getElementById('mob' + i + " " + "mobs").addEventListener("click", function() {
-    var monster = spawnedMobs[i];
-    clearAllBoxes();
-    document.getElementById("mainfightbox").style.display = 'block';
-    let tableHeaderP = document.createElement(`h5`);
-    tableHeaderP.innerHTML = "You";
-    let tableHeaderE = document.createElement(`h5`);
-    tableHeaderE.innerHTML = "Enemy";
-    tableHeaderE.id = "tableheadere";
-    tableHeaderP.id = "tableheaderp";
-    fightBox.appendChild(tableHeaderP);
-    fightBox.appendChild(tableHeaderE);
-    while (player.health > 0 && monster.health > 0) {
-      //Fighting table
-      var x = document.createElement("TABLE");
-      x.setAttribute("id", "myTable");
-      let mainfightbox = document.getElementById("mainfightbox");
-      mainfightbox.appendChild(x);
-      var table = document.getElementById("myTable");
-      var row = table.insertRow(0);
-      var cell1 = row.insertCell(0);
-      var cell2 = row.insertCell(1);
-      playerDamageNumber = calculateDamage(player.mainHand.minDamage, player.mainHand.maxDamage);
-      monster.health -= playerDamageNumber;
-      cell1.innerHTML = `You hit ${monster.name} for <font color="red">${playerDamageNumber}</font> Damage! <br>`;
-      if (player.health > 0 && monster.health <= 0) {
-        monster.health = monster.maxHealth;
-        player.xp += monster.xp;
-        player.gold += monster.gold;
-        text = document.createElement('h4')
-        text.innerHTML = `You have won! You gained <font color="#98B0FD">${monster.xp} exp</font> and <font color="#FFFB0A">${monster.gold} gold</font>.`
-        fightBox.appendChild(text);
-        createLeftMenu();
-        if (player.xp >= player.xpUp) {
-          levelUpText = document.createElement('h3');
-          levelUpText.id = 'levelupid';
-          levelUpText.innerHTML = "You have gained a level!"
-          fightBox.appendChild(levelUpText);
-          levelUp();
-          createLeftMenu();
-        };
-        if (monster.name === player.quest.monsterObjective) {
-          player.questCounter -= 1;
-          createLeftMenu();
-          questParagraph = document.createElement("p");
-          questParagraph.innerHTML = `-=!Quest!=- ${player.questCounter} ${player.quest.monsterObjective}s remain!`;
-          fightBox.appendChild(questParagraph);
-          if (player.questCounter === 0) {
-            arrayOfQuest = questList.indexOf(player.quest); // Select's the quests index
-            questList.splice(arrayOfQuest, 1); // removes the quest
-            player.gold += player.quest.reward; // reward to player
-            alert(`You finished the quest! You have been rewarded with ${player.quest.reward} Gold`);
-            player.quest = NaN; // resets current quest
-            player.questCounter = 0; // resets quest counter\
-                          questParagraph.innerHTML = `You finished the quest and have been rewarded`;
-            createLeftMenu();
-            document.getElementById("currentquest").style.display = "none";
-          };
-        };
-        break;
-      };
-      enemyDamageNumber = calculateEnemyDamage(monster.minDamage, monster.maxDamage);
-      player.health -= enemyDamageNumber;
-      cell2.innerHTML = `${monster.name} hit you for <font color="red">${enemyDamageNumber}</font> Damage! <br>`;
-      if (player.health <= 0 && monster.health > 0) { // if player dead
-        $("#hp").css("color", "red");
-        let lostGold = Math.floor(Math.random() * player.gold)
-        player.gold -= lostGold;
-        text = document.createElement('h4')
-        text.innerHTML = "You have lost the fight and died!"
-        lostGoldText = document.createElement("h5");
-        lostGoldText.innerHTML = `Sadly you lost ${lostGold} gold for losing the fight <br> You can depsoit your gold to keep it safe!`
-        fightBox.appendChild(text);
-        fightBox.appendChild(lostGoldText);
-        monster.health = monster.maxHealth;
-        player.health = 0;
-        createLeftMenu();
-        break;
-      };
-      continue;
-    };
-    if (player.health <= 0 && monster.health > 0) { // checkes if player dead before fight start
-      monster.health = monster.maxHealth;
-      fightBox = document.getElementById("mainfightbox");
-      deadText = document.createElement('h3');
-      deadText.innerHTML = "You are DEAD!";
-      fightBox.appendChild(deadText);
-      createLeftMenu();
-    };
-  });
-};
 
 // Still not working, Changing fighting to Turn Based.
 function newFight() {
@@ -477,10 +356,13 @@ function newFight() {
       document.getElementById("mainfightbox").style.display = 'block';
       $("#mainfightoption").show();
       $("#mainfightbox").append("<h5 id='tableheaderp'>You</h5>");
-      $("#mainfightbox").append("<h5 id='tableheadere'>Enemy</h5>");
+	
+      $("#mainfightbox").append("<h5 id='tableheadere'>" + monster.name + "</h5>");
       $("#attackbtn").on("click", function(){
         hideButtons();
         $("#mainfightbox").html("");
+	$("#mainfightbox").append("<h5 id='tableheaderp'>You</h6>");
+        $("#mainfightbox").append("<h5 id='tableheadere'>" + monster.name + "</h5>");
         if (player.health <= 0 && monster.health > 0) { // checkes if player dead before fight start
           monster.health = monster.maxHealth;
           fightBox = document.getElementById("mainfightbox");

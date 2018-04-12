@@ -170,11 +170,11 @@ label {
 #createplayerbox #createplayer {
     text-align: center;
     color: rgba(255, 255, 255, 0.8);
-    margin-top: 50px;
+    margin-top: 10px;
 }
 
 #createplayerbox #createplayer input {
-    margin-bottom: 2px;
+    margin-bottom: 5px;
 }
 
 #mainvendorbox:hover {
@@ -208,7 +208,7 @@ label {
 
 #mainfightbox {
     position: relative;
-    width: 340px;
+    width: 400px;
     height: 100%;
     top: 0px;
     left: 50%;
@@ -269,8 +269,8 @@ label {
 
 #mainfightbox h5 {
     display: inline-block;
-    margin: 5px 30px;
-    padding: 0px 35px;
+    margin: 5px 15px;
+    padding: 0px 15px;
     font-weight: bold;
     font-size: 14px;
     line-height: 2;
