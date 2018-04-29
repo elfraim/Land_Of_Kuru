@@ -210,19 +210,19 @@ weaponVendor.inStore = [
 ];
 
 //monster list
-const rat = new Monster("Rat (Lv 1)", 15, 1, 3, 5, randomNum(25));
-const spider = new Monster("Spider (Lv 2)", 18, 2, 4, 13, randomNum(45));
-const scorpion = new Monster("Scorpion (Lv 3)", 22, 3, 6, 16, randomNum(65));
-const blackScorpion = new Monster("Black Scorpion (Lv 4)", 25, 4, 8, 20, randomNum(85));
+const rat = new Monster("Rat(Lv1)", 15, 1, 3, 5, randomNum(25));
+const spider = new Monster("Spider(Lv2)", 18, 2, 4, 13, randomNum(45));
+const scorpion = new Monster("Scorpion(Lv3)", 22, 3, 6, 16, randomNum(65));
+const blackScorpion = new Monster("BlackScorpion(Lv4)", 25, 4, 8, 20, randomNum(85));
 
 const monsterList = [rat, spider, scorpion, blackScorpion];
 
 //wild forest mobs
-const owl = new Monster("Owl (Lv 5)", 35, 8, 10, 30, randomNum(105));
-const buck = new Monster("Wild Buck (Lv 6)", 40, 10, 14, 37, randomNum(125));
-const bear = new Monster("Bear (Lv 8)", 45, 12, 16, 42, randomNum(145));
-const viper = new Monster("Viper (Lv 9)", 50, 14, 18, 50, randomNum(165));
-const urgot = new Monster("Urgot (Lv 10 BOSS)", 85, 10, 30, 100, randomNum(200));
+const owl = new Monster("Owl(Lv5)", 35, 8, 10, 30, randomNum(105));
+const buck = new Monster("WildBuck(Lv6)", 40, 10, 14, 37, randomNum(125));
+const bear = new Monster("Bear(Lv8)", 45, 12, 16, 42, randomNum(145));
+const viper = new Monster("Viper(Lv9)", 50, 14, 18, 50, randomNum(165));
+const urgot = new Monster("Urgot(Lv10BOSS)", 85, 10, 30, 100, randomNum(200));
 const wildForestList = [owl, buck, bear, viper];
 const spawnedMobs = []
 
@@ -341,13 +341,15 @@ function newFight() {
   createLeftMenu();
   clearAllBoxes();
   spawnedMobs.length = 0;
+  $('#mainmonsterbox').html("");
   $("#mainmonsterbox").html("<h2> Monsters around you </h2>");
   document.getElementById("mainmonsterbox").style.display = "block";
   randomMonster();
   for (let i = 0; i < spawnedMobs.length; i++) { // Mob selector
     monster = spawnedMobs[i];
-    $("#mainmonsterbox").append('<p id="mob' + i + '">' + monster.name + '</p>');
+    $("#mainmonsterbox").append('<p id=mob' + i + '>' + monster.name + '</p>');
     $('#mob' + i).on("click", function() {
+      monster = spawnedMobs[i]
       $("#mainfightbox").html("");
       clearAllBoxes();
       $("#fightpage").show();
@@ -355,9 +357,9 @@ function newFight() {
       showButtons();
       document.getElementById("mainfightbox").style.display = 'block';
       $("#mainfightoption").show();
-      $("#mainfightbox").append("<h5 id='tableheaderp'>You</h5>");
-	
-      $("#mainfightbox").append("<h5 id='tableheadere'>" + monster.name + "</h5>");
+      $('#mainfightbox').prepend(`<img id="mobimg" src='./pics/${monster.name}.jpg' />`)
+      $("#mainfightbox").append("<h4 id='tableheadere'>" + monster.name + "</h4>");
+      // Attack Button
       $("#attackbtn").on("click", function(){
         hideButtons();
         $("#mainfightbox").html("");

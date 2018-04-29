@@ -153,13 +153,17 @@ label {
     padding: 10px 10px;
 }
 
+#classes {
+    color: orange;
+}
+
 #createplayerbox {
     position: fixed;
-    width: 340px;
-    height: 280px;
+    width: 440px;
+    height: 480px;
     top: 50%;
-    left: 50%;
-    margin-top: -140px;
+    left: 47%;
+    margin-top: -170px;
     margin-left: -170px;
     background-color: rgba(255, 255, 255, 0.100);
     border: 1px rgba(255, 255, 255, 0.856);
@@ -175,6 +179,16 @@ label {
 
 #createplayerbox #createplayer input {
     margin-bottom: 5px;
+}
+
+#createplayerbtn {
+    border: none;
+    background-color: orange;
+    color: white; 
+    box-shadow: 0px 6px 6px -6px #000000;
+    width: 150px;
+    height: 30px;
+    margin-top: 5px;
 }
 
 #mainvendorbox:hover {
@@ -248,7 +262,6 @@ label {
     border: 1px white solid;
     text-align: center;
     font-size: 13px;
-    cursor: pointer;
 }
 
 #mainmedicbox {
@@ -388,4 +401,10 @@ label {
 }
 #mainfightbox #playerhealth {
     color:green;
+}
+
+#mobimg {
+    width: 225px;
+    height: 195px;
+    position: static;
 }
