@@ -286,7 +286,7 @@ function randomMonster() {
   }
 };
 
-//Damage calculator, Returns a damage after calculating the players stats.
+//Damage calculator, Returns damage after calculating the players stats.
 function calculateDamage(minDamage, maxDamage) {
   if (player.pClass === "warrior") {
     calculatedMinDamage = (minDamage + player.stats.str + player.stats.agi) / 2.5;
@@ -336,7 +336,7 @@ function levelUp() {
 
 
 
-// Still not working, Changing fighting to Turn Based.
+//till WIP, changed fighting to Turn Based.
 function newFight() {
   createLeftMenu();
   clearAllBoxes();
@@ -361,14 +361,17 @@ function newFight() {
       $("#attackbtn").on("click", function(){
         hideButtons();
         $("#mainfightbox").html("");
-	$("#mainfightbox").append("<h5 id='tableheaderp'>You</h6>");
+	      $("#mainfightbox").append("<h5 id='tableheaderp'>You</h6>");
         $("#mainfightbox").append("<h5 id='tableheadere'>" + monster.name + "</h5>");
-        if (player.health <= 0 && monster.health > 0) { // checkes if player dead before fight start
+        
+        // checkes if player dead before fight start
+        if (player.health <= 0 && monster.health > 0) { 
           monster.health = monster.maxHealth;
           fightBox = document.getElementById("mainfightbox");
           $("#mainfightbox").html("<br /> <h3>You are DEAD!</h3>");
           createLeftMenu();
-        } else {
+        } else if (player.health > 0) {
+          //starts fight while player health is over 0 and mob too
           while (player.health > 0 && monster.health > 0) {
             //Fighting table
             var x = document.createElement("TABLE");
@@ -382,16 +385,16 @@ function newFight() {
             playerDamageNumber = calculateDamage(player.mainHand.minDamage, player.mainHand.maxDamage);
             monster.health -= playerDamageNumber;
             cell1.innerHTML = `You hit ${monster.name} for <font color="red">${playerDamageNumber}</font> Damage! <br>`;
-            if (player.health > 0 && monster.health <= 0) {
+            // checks if mob is dead
+            if (player.health > 0 && monster.health <= 0) { 
               monster.health = monster.maxHealth;
               player.xp += monster.xp;
               player.gold += monster.gold;
               text = document.createElement('h4')
               $("#mainfightbox").append(`You have won! You gained <font color="#98B0FD">${monster.xp} exp</font> and <font color="#FFFB0A">${monster.gold} gold</font>.`);
-
               createLeftMenu();
               if (player.xp >= player.xpUp) {
-                $("#mainfightbox").append("You have gained a level!")
+                $("#mainfightbox").append("<br /> You have gained a level!")
                 levelUp();
                 createLeftMenu();
               };
@@ -411,23 +414,25 @@ function newFight() {
                   document.getElementById("currentquest").style.display = "none";
                 };
               };
-              break;
-            };
+            } else { 
             enemyDamageNumber = calculateEnemyDamage(monster.minDamage, monster.maxDamage);
             player.health -= enemyDamageNumber;
             cell2.innerHTML = `${monster.name} hit you for <font color="red">${enemyDamageNumber}</font> Damage! <br>`;
-            if (player.health <= 0 && monster.health > 0) { // if player dead
-              $("#hp").css("color", "red");
-              let lostGold = Math.floor(Math.random() * player.gold)
-              player.gold -= lostGold;
-              $("#mainfightbox").append("You have lost the fight and <font color='red'>died!</font> ");
-              $("#mainfightbox").append(`Sadly you lost ${lostGold} gold for losing the fight <br> You can depsoit your gold to keep it safe!`);
-              monster.health = monster.maxHealth;
-              player.health = 0;
-              createLeftMenu();
-              break;
-            };
-            continue;
+              if (player.health <= 0 && monster.health > 0) { // if player dead
+                $("#hp").css("color", "red");
+                let lostGold = Math.floor(Math.random() * player.gold)
+                player.gold -= lostGold;
+                $("#mainfightbox").append("You have lost the fight and <font color='red'>died!</font> ");
+                $("#mainfightbox").append(`Sadly you lost ${lostGold} gold for losing the fight <br> You can depsoit your gold to keep it safe!`);
+                monster.health = monster.maxHealth;
+                player.health = 0;
+                createLeftMenu();
+                break;
+              } else {
+                continue;
+              };
+            }
+            break;
           };
         };
       });
